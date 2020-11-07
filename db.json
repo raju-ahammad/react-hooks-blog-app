@@ -1,8 +1,20 @@
 {
-  "blogs": [
+  "posts": [
     {
-      "title": "new post",
+      "title": "New post",
+      "description": "this post is about",
       "id": 1
+    },
+    {
+      "title": "2nd  post",
+      "description": "2nd post description is about",
+      "id": 2
+    },
+    {
+      "title": "3rd title",
+      "description": "3rd post description is about",
+      "id": 3
     }
-  ]
+  ],
+  "comments": []
 }
