@@ -1,24 +1,29 @@
-import axios from "axios"
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { Post } from '../Utils/axios'
 
 const NewPost = () => {
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
 
+    const { push } = useHistory()
 
 
     const HandleSubmit = (e) => {
         e.preventDefault();
         console.log(title, description);
 
-        axios
-        .post(" http://localhost:3001/posts" , {title, description})
-        .then(()=> console.log("post created"))
-        .catch(()=> console.log("error"));
+        Post(" http://localhost:3001/posts" , {title, description})
+        .then(() => {
+            setTitle("")
+            setDescription("")
+            push("/posts")
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 
-        setTitle("")
-        setDescription("")
     }
 
     return (
