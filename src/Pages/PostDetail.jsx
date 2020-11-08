@@ -4,25 +4,31 @@ import { Link, useParams } from 'react-router-dom';
 import PostManage from '../Components/PostManage';
 import { Get, Put } from '../Utils/axios';
 
-const PostDetail = () => {
+const PostDetail = ({ onEditSubmit }) => {
     const {postId} = useParams()
     const [ postDetail, setPostDetail ] = useState("")
 
     const { isOpen, onOpen, onClose } =useDisclosure()
 
-    useEffect(()=> {
+    const getPostData = () => {
         Get(`http://localhost:3001/posts/${postId}`)
         .then((res)=> {
             setPostDetail(res.data)
         })
         .catch((err)=>console.log(err))
-    }, [])
+    }
+
+    useEffect(()=> {
+        getPostData();
+    }, [postId])
 
     const submitHandler = (values) => {
 
         Put(`http://localhost:3001/posts/${postId}`, values)
         .then(() => {
-            onClose()
+            onClose();
+            getPostData();
+            onEditSubmit();
         })
         .catch((err)=> {
             console.log(err);
@@ -39,7 +45,7 @@ const PostDetail = () => {
             {postDetail === "" ? <h3>Loading....</h3>: 
             <div>
                 <h2>{ postDetail.title }</h2>
-                <h6>postDetail.description</h6>
+                <h6>{postDetail.description}</h6>
             </div>
             }
             <div>

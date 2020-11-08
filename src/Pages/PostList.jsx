@@ -1,30 +1,14 @@
-import { ListItem } from '@chakra-ui/core'
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Get } from '../Utils/axios'
+import { ListItem } from '@chakra-ui/core';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const PostList = () => {
-
+const PostList = ({ posts, loading }) => {
     
-    const [posts, setPosts] = useState([])
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        Get(" http://localhost:3001/posts")
-        .then((res) => {
-            console.log(res.data);
-            setPosts(res.data)
-            setLoading(false)
-        })
-        .catch((err)=> {
-            console.log(err);
-            setLoading(false)
-        })
-    }, [])
-
-
     return (
         <div>
+
+            
+
             {
                 loading ? " Loading...":
                 posts.map((post) => {
