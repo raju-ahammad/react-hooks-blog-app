@@ -4,6 +4,16 @@
       "title": "new title",
       "description": "this is new title description",
       "id": 1
+    },
+    {
+      "title": "hello vaia this is new post",
+      "description": "hello this description is enough for this post",
+      "id": 2
+    },
+    {
+      "title": "Ami  nei vai",
+      "description": "Tui korisne ta ki da korece",
+      "id": 3
     }
   ],
   "comments": []
